@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Year Calendar — 2026 Close &amp; Full 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050a16; --bg-2:#070e1e; --panel:#0b1730; --panel-hi:#10203f;
+  --line:rgba(120,165,230,.16); --line-2:rgba(120,165,230,.28);
+  --ink:#eaf1ff; --ink-soft:#c3d3ec; --muted:#94a9c9; --dim:#6b83a8;
+  --accent:#5b9dff; --cyan:#35e0d0; --violet:#a78bfa;
+  --amber:#ffb454; --rose:#ff7a90; --radius:14px;
+}
+*{box-sizing:border-box;}
+html{background:var(--bg);color-scheme:dark;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 700px at 12% -8%, rgba(91,157,255,.16), transparent 62%),
+    radial-gradient(900px 620px at 92% 4%, rgba(53,224,208,.11), transparent 60%),
+    radial-gradient(900px 900px at 50% 110%, rgba(167,139,250,.09), transparent 65%),
+    linear-gradient(180deg,#050a16 0%,#060c1b 45%,#040814 100%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  font-size:10.6pt;line-height:1.6;font-weight:400;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.sheet{max-width:1000px;margin:0 auto;padding:56px 46px 80px;}
+h1,h2,h3,h4{margin:0;line-height:1.22;font-weight:700;letter-spacing:-.015em;}
+p{margin:0 0 12px;}
+strong{color:#fff;font-weight:600;}
+em{color:var(--ink-soft);font-style:italic;}
+
+/* COVER */
+.cover{
+  position:relative;border:1px solid var(--line-2);border-radius:22px;
+  padding:58px 54px 48px;
+  background:
+    radial-gradient(700px 380px at 88% -10%, rgba(91,157,255,.22), transparent 62%),
+    radial-gradient(560px 340px at 0% 108%, rgba(53,224,208,.14), transparent 60%),
+    linear-gradient(165deg,#0a1730 0%,#081227 55%,#060d1e 100%);
+  overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.cover::after{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(120,165,230,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(120,165,230,.055) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(circle at 70% 20%, #000 0%, transparent 78%);
+  -webkit-mask-image:radial-gradient(circle at 70% 20%, #000 0%, transparent 78%);
+  pointer-events:none;
+}
+.cover > *{position:relative;z-index:1;}
+.logo{display:inline-flex;align-items:center;gap:12px;padding:8px 16px 8px 8px;border:1px solid var(--line-2);border-radius:100px;background:rgba(91,157,255,.08);margin-bottom:32px;}
+.logo-mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font:800 11px/1 'JetBrains Mono',monospace;letter-spacing:.03em;color:#04101f;background:linear-gradient(140deg,#7fb4ff,#35e0d0);box-shadow:0 6px 20px rgba(91,157,255,.4);}
+.logo-text{font:600 10px/1 'JetBrains Mono',monospace;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);}
+.cover h1{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1.06;margin-bottom:6px;}
+.cover h1 .thin{display:block;font-weight:300;font-size:24px;letter-spacing:.02em;color:var(--muted);margin-top:12px;}
+.cover-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;}
+.pill{font:500 9.4px/1 'JetBrains Mono',monospace;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;border-radius:100px;border:1px solid var(--line-2);color:var(--ink-soft);background:rgba(255,255,255,.03);}
+.pill.hot{color:#04101f;background:linear-gradient(120deg,#7fb4ff,#35e0d0);border-color:transparent;font-weight:600;}
+.cover-note{margin-top:32px;padding:18px 20px;border-left:3px solid var(--cyan);border-radius:0 12px 12px 0;background:linear-gradient(100deg,rgba(53,224,208,.11),rgba(91,157,255,.04));font-size:10.2pt;color:var(--ink-soft);max-width:720px;}
+.cover-note b{color:#fff;}
+
+/* SECTIONS */
+.part{margin-top:40px;break-inside:auto;}
+.part-head{display:flex;align-items:baseline;gap:16px;padding-bottom:10px;margin-bottom:18px;border-bottom:1px solid var(--line-2);position:relative;}
+.part-head::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:96px;background:linear-gradient(90deg,var(--accent),var(--cyan));border-radius:2px;}
+.part-num{font:700 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--cyan);text-transform:uppercase;white-space:nowrap;}
+.part-head h2{font-size:20px;letter-spacing:-.02em;}
+
+h3.sub{font:600 9.6px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:26px 0 12px;display:flex;align-items:center;gap:10px;}
+h3.sub::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line-2),transparent);}
+
+/* TABLES */
+.table-wrap{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:rgba(9,18,38,.6);margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;font-size:9.6pt;}
+thead th{background:linear-gradient(180deg,#132a52,#0d1d38);color:#b9cff2;font:600 8.4px/1.3 'JetBrains Mono',monospace;letter-spacing:.13em;text-transform:uppercase;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line-2);white-space:nowrap;}
+tbody td{padding:10px 14px;border-bottom:1px solid rgba(120,165,230,.1);vertical-align:top;color:var(--ink-soft);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:rgba(120,165,230,.035);}
+tbody td:first-child{color:#fff;font-weight:500;}
+tbody td strong{color:#fff;}
+
+.compact table{font-size:9.1pt;}
+.compact thead th{padding:9px 11px;}
+.compact tbody td{padding:7px 11px;}
+
+/* row types */
+tr.ctx td{color:#8ea3c4 !important;font-style:italic;}
+tr.ctx td:first-child{color:#a9bcd8 !important;}
+tr.open-row td, tr.close-row td{
+  background:rgba(167,139,250,.09) !important;
+  color:#d8c4ff !important;
+}
+tr.open-row td:first-child, tr.close-row td:first-child{color:#e6d9ff !important;}
+tr.partial-row td{background:rgba(255,180,84,.08) !important;}
+tr.today-row td{
+  background:rgba(53,224,208,.1) !important;
+  border-top:1px solid rgba(53,224,208,.4);
+  border-bottom:1px solid rgba(53,224,208,.4);
+}
+.today-tag{font:600 7.4px/1 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#04101f;background:linear-gradient(120deg,#7fb4ff,#35e0d0);border-radius:100px;padding:4px 7px;margin-left:7px;white-space:nowrap;}
+.mono{font-family:'JetBrains Mono',monospace;font-size:8.8pt;letter-spacing:.02em;}
+
+/* chips */
+.chip{display:inline-block;font:600 8px/1 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:6px;white-space:nowrap;}
+.chip.rhythm{color:#9cc4ff;background:rgba(91,157,255,.12);border:1px solid rgba(91,157,255,.3);}
+.chip.open{color:#d8c4ff;background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);}
+.chip.partial{color:#ffc478;background:rgba(255,180,84,.12);border:1px solid rgba(255,180,84,.3);}
+.chip.close{color:#ff92a5;background:rgba(255,122,144,.12);border:1px solid rgba(255,122,144,.3);}
+
+/* callouts */
+.callout{border-radius:var(--radius);padding:18px 22px;margin:16px 0;border-left:3px solid var(--accent);background:linear-gradient(100deg,rgba(91,157,255,.13),rgba(91,157,255,.03));font-size:10.4pt;color:#dbe7fb;break-inside:avoid;}
+.callout.cyan{border-left-color:var(--cyan);background:linear-gradient(100deg,rgba(53,224,208,.12),rgba(53,224,208,.03));}
+.callout.violet{border-left-color:var(--violet);background:linear-gradient(100deg,rgba(167,139,250,.12),rgba(167,139,250,.03));}
+.callout.amber{border-left-color:var(--amber);background:linear-gradient(100deg,rgba(255,180,84,.11),rgba(255,180,84,.03));}
+.callout .label{display:block;font:600 8.4px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:9px;}
+.callout.cyan .label{color:var(--cyan);}
+.callout.violet .label{color:var(--violet);}
+.callout.amber .label{color:var(--amber);}
+
+/* grid + stats */
+.grid{display:grid;gap:14px;}
+.grid-2{grid-template-columns:1fr 1fr;}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.stat{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(160deg,rgba(16,32,63,.85),rgba(7,15,32,.85));padding:16px 18px;break-inside:avoid;}
+.stat .k{font:600 8px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;display:block;}
+.stat .v{font-size:18px;font-weight:800;letter-spacing:-.02em;background:linear-gradient(100deg,#9cc4ff,#35e0d0);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.stat .s{font-size:9pt;color:var(--muted);margin-top:6px;display:block;}
+
+.card{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(165deg,rgba(14,28,55,.9),rgba(8,16,34,.9));padding:18px 20px;break-inside:avoid;position:relative;overflow:hidden;}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--cyan));opacity:.7;}
+.card h4{font-size:11.4pt;margin-bottom:8px;color:#fff;}
+.card p{font-size:9.8pt;color:var(--muted);margin:0;}
+.card p + p{margin-top:7px;}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:14px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(11,23,48,.6);margin:14px 0;}
+.legend .item{display:flex;align-items:center;gap:8px;font-size:9pt;color:var(--muted);}
+
+/* quarter band */
+.qband{display:flex;flex-wrap:wrap;gap:0;margin:0 0 14px;border:1px solid var(--line-2);border-radius:12px;overflow:hidden;}
+.qband .cell{flex:1 1 200px;padding:14px 16px;border-right:1px solid var(--line);}
+.qband .cell:last-child{border-right:none;}
+.qband .cell .q{font:700 9px/1 'JetBrains Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:7px;}
+.qband .cell .d{font-size:9.4pt;color:var(--ink-soft);}
+
+.footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font:500 8.6px/1.6 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
+
+.toolbar{position:fixed;right:22px;bottom:22px;z-index:99;display:flex;gap:10px;align-items:center;}
+.btn{cursor:pointer;font:600 9px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#04101f;background:linear-gradient(120deg,#7fb4ff,#35e0d0);border:none;border-radius:100px;padding:14px 22px;box-shadow:0 10px 30px rgba(91,157,255,.35);transition:transform .15s ease, box-shadow .15s ease;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(91,157,255,.45);}
+.hint{font:500 8.4px/1.5 'JetBrains Mono',monospace;color:var(--dim);max-width:180px;text-align:right;}
+
+@page{ size:A4; margin:12mm 11mm; }
+@media print{
+  html,body{background:#050a16 !important;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  body{font-size:9.2pt;}
+  .sheet{max-width:none;padding:0;margin:0;}
+  .no-print{display:none !important;}
+  .cover{break-after:page;page-break-after:always;border-radius:16px;}
+  .part{margin-top:24px;}
+  h2,h3,h4{break-after:avoid;page-break-after:avoid;}
+  tr,.card,.callout,.stat,.table-wrap,.legend,.qband{break-inside:avoid;page-break-inside:avoid;}
+  thead{display:table-header-group;}
+  table{font-size:8.6pt;}
+  .compact table{font-size:8.3pt;}
+  thead th{padding:8px 10px;font-size:7.6px;}
+  tbody td{padding:6px 10px;}
+  .compact tbody td{padding:5px 10px;}
+}
+@media (max-width:780px){
+  .sheet{padding:28px 16px 60px;}
+  .cover{padding:36px 24px;}
+  .cover h1{font-size:28px;}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+  .qband .cell{flex:1 1 100%;border-right:none;border-bottom:1px solid var(--line);}
+  .qband .cell:last-child{border-bottom:none;}
+}
+</style>
+</head>
+<body>
+
+<main class="sheet">
+
+  <!-- ================= COVER ================= -->
+  <section class="cover">
+    <div class="logo">
+      <div class="logo-mark">WK</div>
+      <div class="logo-text">Monday — Sunday Week Ledger</div>
+    </div>
+
+    <h1>
+      Weekly Year Calendar<br>2026 Close &amp; Full 2027
+      <span class="thin">Each year its own weeks · No week crosses a year boundary</span>
+    </h1>
+
+    <div class="cover-meta">
+      <span class="pill hot">Starts Oct 2026</span>
+      <span class="pill">2026: Wk 43 → Wk 52</span>
+      <span class="pill">2027: Wk 1 → Wk 52</span>
+      <span class="pill">4 Quarters in 2027</span>
+      <span class="pill">Mon → Sun</span>
+    </div>
+
+    <div class="cover-note">
+      <b>The rule:</b> weeks run <b>Monday to Sunday</b>. <b>2026</b> and <b>2027</b> each keep their own numbering —
+      2027 restarts at <b>Week 1</b>. No week is allowed to run from one year into the next, so days that fall outside
+      a complete Monday–Sunday week are shown as <b>year-open days</b> and <b>year-close days</b>.
+    </div>
+  </section>
+
+  <!-- ================= YEAR ARITHMETIC ================= -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Rule</span>
+      <h2>How a Year Divides Into Weeks</h2>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="stat">
+        <span class="k">Common Year — 2026 &amp; 2027</span>
+        <span class="v">365 days</span>
+        <span class="s">= 52 weeks + 1 day</span>
+      </div>
+      <div class="stat">
+        <span class="k">Leap Year — not in this range</span>
+        <span class="v">366 days</span>
+        <span class="s">= 52 weeks + 2 days</span>
+      </div>
+    </div>
+
+    <div class="callout cyan">
+      <span class="label">What Happens To The Leftover Day</span>
+      Because a week may not cross into the next year, the leftover day cannot simply be tacked onto a 53rd week.
+      It is absorbed by the calendar’s alignment and appears in the ledger as <strong>opening days before Week 1</strong>
+      and a <strong>short final week</strong> at year-end. Both years below are common years (365 days).
+    </div>
+
+    <h3 class="sub">2026 — The Arithmetic</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:230px">Component</th><th style="width:150px">Dates</th><th style="width:80px">Days</th><th>Explanation</th></tr></thead>
+        <tbody>
+          <tr class="open-row"><td>Year-open days</td><td>Thu 1 Jan – Sun 4 Jan 2026</td><td class="mono">4</td><td>1 Jan 2026 is a Thursday. The first complete Monday–Sunday week cannot begin until Mon 5 Jan.</td></tr>
+          <tr><td>Full numbered weeks 1–51</td><td>Mon 5 Jan – Sun 27 Dec 2026</td><td class="mono">357</td><td>51 complete Monday–Sunday weeks.</td></tr>
+          <tr class="partial-row"><td>Week 52 — partial</td><td>Mon 28 Dec – Thu 31 Dec 2026</td><td class="mono">4</td><td>Year ends mid-week. No rollover into 2027.</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>1 Jan – 31 Dec 2026</strong></td><td class="mono"><strong>365</strong></td><td>4 + 357 + 4 = 365</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">2027 — The Arithmetic</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:230px">Component</th><th style="width:150px">Dates</th><th style="width:80px">Days</th><th>Explanation</th></tr></thead>
+        <tbody>
+          <tr class="open-row"><td>Year-open days</td><td>Fri 1 Jan – Sun 3 Jan 2027</td><td class="mono">3</td><td>1 Jan 2027 is a Friday. Week 1 begins Mon 4 Jan.</td></tr>
+          <tr><td>Full numbered weeks 1–51</td><td>Mon 4 Jan – Sun 26 Dec 2027</td><td class="mono">357</td><td>51 complete Monday–Sunday weeks.</td></tr>
+          <tr class="partial-row"><td>Week 52 — partial</td><td>Mon 27 Dec – Fri 31 Dec 2027</td><td class="mono">5</td><td>Year ends mid-week. No rollover into 2028.</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>1 Jan – 31 Dec 2027</strong></td><td class="mono"><strong>365</strong></td><td>3 + 357 + 5 = 365</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <div class="item"><span class="chip open">Open</span> days before Week 1</div>
+      <div class="item"><span class="chip rhythm">Week</span> full Monday–Sunday week</div>
+      <div class="item"><span class="chip partial">Partial</span> short final week</div>
+      <div class="item"><span class="chip close">Bridge</span> days into the next year</div>
+    </div>
+  </section>
+
+  <!-- ================= 2026 BLOCK ================= -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Block One</span>
+      <h2>2026 — From October to Year-End</h2>
+    </div>
+
+    <div class="callout amber">
+      <span class="label">Scope Note</span>
+      This block continues the <strong>2026 week sequence</strong>. It is labelled <strong>Q4 2026 only</strong> —
+      Q1, Q2 and Q3 2026 are already closed and are not re-drawn here. Nothing in this block carries into 2027 numbering.
+    </div>
+
+    <h3 class="sub">October 2026 — Context Weeks</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:90px">Week</th><th style="width:150px">Monday</th><th style="width:150px">Sunday</th><th style="width:70px">Days</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr class="ctx"><td>Week 39</td><td>Mon 28 Sep 2026</td><td>Sun 4 Oct 2026</td><td class="mono">7</td><td>Carries 1–4 Oct into October.</td></tr>
+          <tr class="ctx"><td>Week 40</td><td>Mon 5 Oct 2026</td><td>Sun 11 Oct 2026</td><td class="mono">7</td><td>First full October week.</td></tr>
+          <tr class="ctx"><td>Week 41</td><td>Mon 12 Oct 2026</td><td>Sun 18 Oct 2026</td><td class="mono">7</td><td>—</td></tr>
+          <tr class="ctx"><td>Week 42</td><td>Mon 19 Oct 2026</td><td>Sun 25 Oct 2026</td><td class="mono">7</td><td>Week before today’s week.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Live Ledger — Week 43 to Year-End 2026</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:90px">Week</th><th style="width:150px">Monday</th><th style="width:150px">Sunday</th><th style="width:70px">Days</th><th style="width:110px">Status</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr class="today-row">
+            <td>Week 43 <span class="today-tag">Today</span></td>
+            <td>Mon 26 Oct 2026</td>
+            <td>Sun 1 Nov 2026</td>
+            <td class="mono">7</td>
+            <td><span class="chip rhythm">Full week</span></td>
+            <td>Contains today, Tue 27 Oct 2026. Ledger starts here.</td>
+          </tr>
+          <tr><td>Week 44</td><td>Mon 2 Nov 2026</td><td>Sun 8 Nov 2026</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>—</td></tr>
+          <tr><td>Week 45</td><td>Mon 9 Nov 2026</td><td>Sun 15 Nov 2026</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>—</td></tr>
+          <tr><td>Week 46</td><td>Mon 16 Nov 2026</td><td>Sun 22 Nov 2026</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>—</td></tr>
+          <tr><td>Week 47</td><td>Mon 23 Nov 2026</td><td>Sun 29 Nov 2026</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>—</td></tr>
+          <tr><td>Week 48</td><td>Mon 30 Nov 2026</td><td>Sun 6 Dec 2026</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>—</td></tr>
+          <tr><td>Week 49</td><td>Mon 7 Dec 2026</td><td>Sun 13 Dec 2026</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>—</td></tr>
+          <tr><td>Week 50</td><td>Mon 14 Dec 2026</td><td>Sun 20 Dec 2026</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>—</td></tr>
+          <tr><td>Week 51</td><td>Mon 21 Dec 2026</td><td>Sun 27 Dec 2026</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Last complete Monday–Sunday week of 2026.</td></tr>
+          <tr class="partial-row"><td>Week 52</td><td>Mon 28 Dec 2026</td><td>Thu 31 Dec 2026</td><td class="mono">4</td><td><span class="chip partial">Partial</span></td><td>Year ends on Thursday. No rollover — 2026 numbering stops here.</td></tr>
+          <tr class="close-row"><td>Bridge</td><td>Fri 1 Jan 2027</td><td>Sun 3 Jan 2027</td><td class="mono">3</td><td><span class="chip close">Year-open 2027</span></td><td>Belongs to 2027 as its opening days. Not part of 2026.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout violet">
+      <span class="label">2026 Close</span>
+      <strong>2026 numbering ends at Week 52 (Thu 31 Dec 2026).</strong> The days Fri 1 – Sun 3 Jan 2027 are the
+      <strong>year-open days of 2027</strong> and carry no 2026 week number.
+    </div>
+  </section>
+
+  <!-- ================= 2027 BLOCK ================= -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Block Two</span>
+      <h2>2027 — A Separate Year, Week 1 Restarts</h2>
+    </div>
+
+    <div class="qband">
+      <div class="cell"><div class="q">Q1 · Weeks 1–13</div><div class="d">Mon 4 Jan – Sun 4 Apr 2027</div></div>
+      <div class="cell"><div class="q">Q2 · Weeks 14–26</div><div class="d">Mon 5 Apr – Sun 4 Jul 2027</div></div>
+      <div class="cell"><div class="q">Q3 · Weeks 27–39</div><div class="d">Mon 5 Jul – Sun 3 Oct 2027</div></div>
+      <div class="cell"><div class="q">Q4 · Weeks 40–52</div><div class="d">Mon 4 Oct – Fri 31 Dec 2027</div></div>
+    </div>
+
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:120px">Opening Days</th><th style="width:200px">Dates</th><th style="width:70px">Days</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr class="open-row"><td>Year-open 2027</td><td>Fri 1 Jan – Sun 3 Jan 2027</td><td class="mono">3</td><td>Before Week 1. Week 1 begins Monday 4 January 2027.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Q1 2027 — Weeks 1 to 13</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:90px">Week</th><th style="width:150px">Monday</th><th style="width:150px">Sunday</th><th style="width:70px">Days</th><th>Quarter</th></tr></thead>
+        <tbody>
+          <tr><td>Week 1</td><td>Mon 4 Jan 2027</td><td>Sun 10 Jan 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 2</td><td>Mon 11 Jan 2027</td><td>Sun 17 Jan 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 3</td><td>Mon 18 Jan 2027</td><td>Sun 24 Jan 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 4</td><td>Mon 25 Jan 2027</td><td>Sun 31 Jan 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 5</td><td>Mon 1 Feb 2027</td><td>Sun 7 Feb 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 6</td><td>Mon 8 Feb 2027</td><td>Sun 14 Feb 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 7</td><td>Mon 15 Feb 2027</td><td>Sun 21 Feb 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 8</td><td>Mon 22 Feb 2027</td><td>Sun 28 Feb 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 9</td><td>Mon 1 Mar 2027</td><td>Sun 7 Mar 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 10</td><td>Mon 8 Mar 2027</td><td>Sun 14 Mar 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 11</td><td>Mon 15 Mar 2027</td><td>Sun 21 Mar 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 12</td><td>Mon 22 Mar 2027</td><td>Sun 28 Mar 2027</td><td class="mono">7</td><td>Q1</td></tr>
+          <tr><td>Week 13</td><td>Mon 29 Mar 2027</td><td>Sun 4 Apr 2027</td><td class="mono">7</td><td>Q1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Q2 2027 — Weeks 14 to 26</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:90px">Week</th><th style="width:150px">Monday</th><th style="width:150px">Sunday</th><th style="width:70px">Days</th><th>Quarter</th></tr></thead>
+        <tbody>
+          <tr><td>Week 14</td><td>Mon 5 Apr 2027</td><td>Sun 11 Apr 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 15</td><td>Mon 12 Apr 2027</td><td>Sun 18 Apr 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 16</td><td>Mon 19 Apr 2027</td><td>Sun 25 Apr 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 17</td><td>Mon 26 Apr 2027</td><td>Sun 2 May 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 18</td><td>Mon 3 May 2027</td><td>Sun 9 May 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 19</td><td>Mon 10 May 2027</td><td>Sun 16 May 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 20</td><td>Mon 17 May 2027</td><td>Sun 23 May 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 21</td><td>Mon 24 May 2027</td><td>Sun 30 May 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 22</td><td>Mon 31 May 2027</td><td>Sun 6 Jun 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 23</td><td>Mon 7 Jun 2027</td><td>Sun 13 Jun 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 24</td><td>Mon 14 Jun 2027</td><td>Sun 20 Jun 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 25</td><td>Mon 21 Jun 2027</td><td>Sun 27 Jun 2027</td><td class="mono">7</td><td>Q2</td></tr>
+          <tr><td>Week 26</td><td>Mon 28 Jun 2027</td><td>Sun 4 Jul 2027</td><td class="mono">7</td><td>Q2</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Q3 2027 — Weeks 27 to 39</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:90px">Week</th><th style="width:150px">Monday</th><th style="width:150px">Sunday</th><th style="width:70px">Days</th><th>Quarter</th></tr></thead>
+        <tbody>
+          <tr><td>Week 27</td><td>Mon 5 Jul 2027</td><td>Sun 11 Jul 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 28</td><td>Mon 12 Jul 2027</td><td>Sun 18 Jul 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 29</td><td>Mon 19 Jul 2027</td><td>Sun 25 Jul 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 30</td><td>Mon 26 Jul 2027</td><td>Sun 1 Aug 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 31</td><td>Mon 2 Aug 2027</td><td>Sun 8 Aug 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 32</td><td>Mon 9 Aug 2027</td><td>Sun 15 Aug 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 33</td><td>Mon 16 Aug 2027</td><td>Sun 22 Aug 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 34</td><td>Mon 23 Aug 2027</td><td>Sun 29 Aug 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 35</td><td>Mon 30 Aug 2027</td><td>Sun 5 Sep 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 36</td><td>Mon 6 Sep 2027</td><td>Sun 12 Sep 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 37</td><td>Mon 13 Sep 2027</td><td>Sun 19 Sep 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 38</td><td>Mon 20 Sep 2027</td><td>Sun 26 Sep 2027</td><td class="mono">7</td><td>Q3</td></tr>
+          <tr><td>Week 39</td><td>Mon 27 Sep 2027</td><td>Sun 3 Oct 2027</td><td class="mono">7</td><td>Q3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Q4 2027 — Weeks 40 to 52</h3>
+    <div class="table-wrap compact">
+      <table>
+        <thead><tr><th style="width:90px">Week</th><th style="width:150px">Monday</th><th style="width:150px">Sunday</th><th style="width:70px">Days</th><th style="width:110px">Status</th><th>Quarter</th></tr></thead>
+        <tbody>
+          <tr><td>Week 40</td><td>Mon 4 Oct 2027</td><td>Sun 10 Oct 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 41</td><td>Mon 11 Oct 2027</td><td>Sun 17 Oct 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 42</td><td>Mon 18 Oct 2027</td><td>Sun 24 Oct 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 43</td><td>Mon 25 Oct 2027</td><td>Sun 31 Oct 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 44</td><td>Mon 1 Nov 2027</td><td>Sun 7 Nov 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 45</td><td>Mon 8 Nov 2027</td><td>Sun 14 Nov 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 46</td><td>Mon 15 Nov 2027</td><td>Sun 21 Nov 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 47</td><td>Mon 22 Nov 2027</td><td>Sun 28 Nov 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 48</td><td>Mon 29 Nov 2027</td><td>Sun 5 Dec 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 49</td><td>Mon 6 Dec 2027</td><td>Sun 12 Dec 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 50</td><td>Mon 13 Dec 2027</td><td>Sun 19 Dec 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr><td>Week 51</td><td>Mon 20 Dec 2027</td><td>Sun 26 Dec 2027</td><td class="mono">7</td><td><span class="chip rhythm">Full week</span></td><td>Q4</td></tr>
+          <tr class="partial-row"><td>Week 52</td><td>Mon 27 Dec 2027</td><td>Fri 31 Dec 2027</td><td class="mono">5</td><td><span class="chip partial">Partial</span></td><td>Q4 — year ends Friday.</td></tr>
+          <tr class="close-row"><td>Bridge</td><td>Sat 1 Jan 2028</td><td>Sun 2 Jan 2028</td><td class="mono">2</td><td><span class="chip close">Year-open 2028</span></td><td>Belongs to 2028, not 2027.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout cyan">
+      <span class="label">2027 Close</span>
+      <strong>2027 numbering ends at Week 52 (Fri 31 Dec 2027).</strong>
+      2028 is a leap year and opens on Saturday 1 January — it starts its own Week 1 on Mon 3 Jan 2028.
+    </div>
+  </section>
+
+  <!-- ================= QUARTER SUMMARY ================= -->
+  <section class="part">
+    <div class="part-head">
+      <span class="part-num">Summary</span>
+      <h2>2027 Quarter Table</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:80px">Quarter</th>
+            <th style="width:100px">Weeks</th>
+            <th style="width:200px">From — To</th>
+            <th style="width:80px">Weeks</th>
+            <th style="width:80px">Days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Q1 2027</td><td>Weeks 1–13</td><td>Mon 4 Jan – Sun 4 Apr 2027</td><td>13</td><td class="mono">91</td></tr>
+          <tr><td>Q2 2027</td><td>Weeks 14–26</td><td>Mon 5 Apr – Sun 4 Jul 2027</td><td>13</td><td class="mono">91</td></tr>
+          <tr><td>Q3 2027</td><td>Weeks 27–39</td><td>Mon 5 Jul – Sun 3 Oct 2027</td><td>13</td><td class="mono">91</td></tr>
+          <tr><td>Q4 2027</td><td>Weeks 40–52</td><td>Mon 4 Oct – Fri 31 Dec 2027</td><td>13</td><td class="mono">89</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout violet">
+      <span class="label">Reconciliation</span>
+      13 + 13 + 13 + 13 = <strong>52 numbered weeks</strong>. Q4 is 89 days because Week 52 is partial (5 days).
+      Add the 3 year-open days and you get <strong>91 + 91 + 91 + 89 + 3 = 365</strong>.
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>2026 Block — At a Glance</h4>
+        <p><strong>Shown from:</strong> Week 43 · Mon 26 Oct 2026</p>
+        <p><strong>Ends:</strong> Week 52 · Thu 31 Dec 2026</p>
+        <p><strong>Label:</strong> Q4 2026 only</p>
+        <p><strong>Weeks shown:</strong> 39–52 (context + live)</p>
+      </div>
+      <div class="card">
+        <h4>2027 Block — At a Glance</h4>
+        <p><strong>Starts:</strong> Week 1 · Mon 4 Jan 2027</p>
+        <p><strong>Ends:</strong> Week 52 · Fri 31 Dec 2027</p>
+        <p><strong>Label:</strong> Q1–Q4 2027</p>
+        <p><strong>Weeks:</strong> 52 numbered · 4 quarters</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <span>Weekly Year Calendar · 2026 Close &amp; Full 2027</span>
+    <span>Monday → Sunday · No week crosses a year boundary</span>
+  </div>
+
+</main>
+
+<div class="toolbar no-print">
+  <div class="hint">Enable “Background graphics” in the print dialog.</div>
+  <button class="btn" onclick="window.print()">Save as PDF</button>
+</div>
+
+</body>
+</html>
